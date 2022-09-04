@@ -1,4 +1,5 @@
 import pymysql
+import MySQLdb.cursors
 
 conn = pymysql.connect(host='smooth.mysql.pythonanywhere-services.com',
                     port=3306,
@@ -7,12 +8,12 @@ conn = pymysql.connect(host='smooth.mysql.pythonanywhere-services.com',
                     db='smooth$yampick',
                     charset='utf8')
 
-cur = conn.cursor()
+cur = conn.cursor(MySQLdb.cursors.DictCursor)
 
-cur.execute("""CREATE TABLE test2(
-				    AlbumId INTEGER NOT NULL PRIMARY KEY,
-				    Title NVARCHAR(160),
-                    ArtistId INTEGER);
+cur.execute("""CREATE TABLE if not exists tb_user(
+                    user_email VARCHAR(45) NOT NULL PRIMARY KEY,
+                    user_pw VARCHAR(45) NOT NULL,
+                    user_name VARCHAR(16) NOT NULL);
 			""")
 
 conn.commit()
