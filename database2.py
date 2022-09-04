@@ -1,5 +1,5 @@
 import pymysql
-import MySQLdb.cursors
+# import MySQLdb.cursors
 
 conn = pymysql.connect(host='smooth.mysql.pythonanywhere-services.com',
                     port=3306,
@@ -9,7 +9,7 @@ conn = pymysql.connect(host='smooth.mysql.pythonanywhere-services.com',
                     charset='utf8')
 
 cur = conn.cursor()
-# cur = conn.cursor(MySQLdb.cursors.DictCursor)
+# cur = conn.cursor(MySQLdb.cursors.DictCursor) -> 실행X
 
 cur.execute("""CREATE TABLE if not exists tb_user(
                     user_email VARCHAR(45) NOT NULL PRIMARY KEY,
