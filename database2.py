@@ -10,7 +10,7 @@ conn = pymysql.connect(host='smooth.mysql.pythonanywhere-services.com',
 
 cur = conn.cursor(MySQLdb.cursors.DictCursor)
 
-cur.execute("""CREATE TABLE if not exists tb_user(
+cur.execute("""CREATE TABLE tb_user(
                     user_email VARCHAR(45) NOT NULL PRIMARY KEY,
                     user_pw VARCHAR(45) NOT NULL,
                     user_name VARCHAR(16) NOT NULL);
