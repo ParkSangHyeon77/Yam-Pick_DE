@@ -9,7 +9,7 @@ conn = pymysql.connect(host='smooth.mysql.pythonanywhere-services.com',
 
 cur = conn.cursor()
 
-cur.execute("""CREATE TABLE test(
+cur.execute("""CREATE TABLE test2(
 				    AlbumId INTEGER NOT NULL PRIMARY KEY,
 				    Title NVARCHAR(160),
                     ArtistId INTEGER);
