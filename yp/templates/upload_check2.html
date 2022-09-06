@@ -7,6 +7,10 @@
     <title>Document</title>
 </head>
 <body>
+    <div>
+    	<img src = {{url_for("static", filename = photo)}}>
+    </div>
+    <div>
     <form action="{{ url_for('upload.how') }}" method = "post">
         {% for food in food_list %}
         <input type="submit" value = "{{ food }}" name = "food_name">
@@ -16,5 +20,6 @@
         <input placeholder="직접 입력하기" name = "food_name">
         <button type="submit">next</button>
     </form>
+    </div>
 </body>
 </html>

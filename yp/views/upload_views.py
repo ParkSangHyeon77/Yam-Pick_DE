@@ -17,12 +17,15 @@ def upload_done():
     global NEW_IMG
     NEW_IMG = tb_user_img()
     NEW_IMG.upload_index = db.session.query(func.count(tb_user_img.upload_index)).all()[0][0] + 1
-    NEW_IMG.upload_user = '지현'
+    NEW_IMG.upload_user = 'geehyun'
 
     # if 가이드라인에 맞지 않음:
         # return redirect(url_for("upload.upload"))
 
     # else
+
+
+    # NEW_IMG.upload_location = f"/home/smooth/Yam-Pick_DE/yp/static/img/{NEW_IMG.upload_index}.jpeg"
     NEW_IMG.upload_location = f"yp/static/img/{NEW_IMG.upload_index}.jpeg"
 
     uploaded_files = request.files["food_img"]
@@ -32,12 +35,12 @@ def upload_done():
     global model_result
     model_result = ['김치찌개', '부대찌개', '등갈비', '냉면', '시리얼']
 
-    return render_template("upload_check.html", first = model_result[0], photo = NEW_IMG.upload_location)
+    return render_template("upload_check.html", first = model_result[0], photo = f"img/{NEW_IMG.upload_index}.jpeg")
 
 @bp.route("/re")
 def double_check():
     if NEW_IMG:
-        return render_template("upload_check2.html", food_list = model_result[1:], photo = NEW_IMG.upload_location)
+        return render_template("upload_check2.html", food_list = model_result[1:], photo = f"img/{NEW_IMG.upload_index}.jpeg")
 
     else:
         return "잘못된 접근입니다." # 에러 페이지 만들거나 홈으로 돌아가기
@@ -54,7 +57,7 @@ def how():
         NEW_IMG.upload_isnew = True
     db.session.add(NEW_IMG)
     db.session.commit()
-    return render_template("upload_how.html", photo = NEW_IMG.upload_location)
+    return render_template("upload_how.html", photo = f"img/{NEW_IMG.upload_index}.jpeg")
 
 @bp.route("/result", methods=["POST"])
 def result():
