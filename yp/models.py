@@ -7,11 +7,11 @@ class tb_user(db.Model):
 
 class tb_user_info(db.Model):
     user_email = db.Column(db.String(45), db.ForeignKey('tb_user.user_email', ondelete='CASCADE'), primary_key=True)
-    user_weight = db.Column(db.Decimal(4, 1), nullable=True)
+    user_weight = db.Column(db.FLOAT(10), nullable=True)
     user_height = db.Column(db.SmallInteger, nullable=True)
     user_birth = db.Column(db.Date, nullable=True)
-    user_cal = db.Column(db.Decimal(5, 1), nullable=True)
-    user_goal = db.Column(db.Decimal(4, 1), nullable=True)
+    user_cal = db.Column(db.FLOAT(10), nullable=True)
+    user_goal = db.Column(db.FLOAT(10), nullable=True)
     user_sex = db.Column(db.Boolean, nullable=True)
 
 class tb_user_img(db.Model):
@@ -23,7 +23,7 @@ class tb_user_img(db.Model):
 class tb_food_img(db.Model):
     food_index = db.Column(db.Integer, primary_key=True)
     food_name = db.Column(db.String(45), nullable=False)
-    food_cal = db.Column(db.Decimal(5, 1), nullable=True)
+    food_cal = db.Column(db.FLOAT(10), nullable=True)
     food_img = db.Column(db.String(45), nullable=False)
 
 class tb_board(db.Model):
