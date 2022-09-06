@@ -9,7 +9,7 @@
 <body>
     이 음식은 {{first}}(이)가 맞나요?
     <p>
-        <a type="button" method="POST" name = "food_name" value = "{{ first }}" href="{{ url_for('upload.how') }}">예</a>
+        <a type="button" method="GET" name = "food_name" value = "{{ first }}" href="{{ url_for('upload.how') }}">예</a>
     </p>
     <p>
         <a href ="{{ url_for('upload.double_check') }}">아니요</a>

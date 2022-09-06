@@ -8,9 +8,9 @@
 </head>
 <body>
     {% for food in food_list %}
-    <button type="button" method="GET" name = "food_name" value = "{{ food }}" action="{{ url_for('upload.upload') }}">{{ food }}</button>
+    <a type="button" method="GET" name = "food_name" value = "{{ food }}" href="{{ url_for('upload.how') }}">{{ food }}</button>
     {% endfor %}
     <input placeholder="직접 입력하기" name = "food_name">
-    <button type="button" method="GET" action="{{ url_for('upload.how') }}">next</button>
+    <a type="button" method="GET" href="{{ url_for('upload.how') }}">next</button>
 </body>
 </html>
