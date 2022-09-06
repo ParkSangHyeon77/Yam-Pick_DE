@@ -37,12 +37,17 @@ def upload_done():
 @bp.route("/re")
 def double_check():
     if NEW_IMG:
-        
-        NEW_IMG.upload_foodname = '된장찌개'
-        NEW_IMG.upload_isnew = True
-        db.session.add(NEW_IMG)
-        db.session.commit()
         return render_template("upload_check2.html", food_list = model_result[1:])
+
     else:
         return "잘못된 접근입니다." # 에러 페이지 만들거나 홈으로 돌아가기
+
+
+@bp.route("/how")
+def how():
+    NEW_IMG.upload_foodname = request.args.get("food_name")
+    NEW_IMG.upload_isnew = True
+    db.session.add(NEW_IMG)
+    db.session.commit()
+    return NEW_IMG.upload_foodname
 
