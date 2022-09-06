@@ -17,6 +17,7 @@ class tb_user_info(db.Model):
 class tb_user_img(db.Model):
     upload_index = db.Column(db.Integer, primary_key=True)
     upload_user = db.Column(db.String(45), db.ForeignKey('tb_user.user_email', ondelete='SET NULL'))
+    upload_foodname = db.Column(db.String(45), nullable=False)
     upload_location = db.Column(db.String(45), nullable=False)
     upload_isnew = db.Column(db.Boolean, nullable=False)
 
