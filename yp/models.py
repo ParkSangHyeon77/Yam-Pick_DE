@@ -1,14 +1,33 @@
 from yp import db
 
-class Question(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    subject = db.Column(db.String(200), nullable=False)
-    content = db.Column(db.Text(), nullable=False)
-    create_date = db.Column(db.DateTime(), nullable=False)
+class tb_user(db.Model):
+    user_email = db.Column(db.String(45), primary_key=True)
+    user_pw = db.Column(db.String(45), nullable=False)
+    user_name = db.Column(db.String(16), nullable=False)
 
-class Answer(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    question_id = db.Column(db.Integer, db.ForeignKey('question.id', ondelete='CASCADE'))
-    question = db.relationship('Question', backref=db.backref('answer_set'))
-    content = db.Column(db.Text(), nullable=False)
-    create_date = db.Column(db.DateTime(), nullable=False)
+class tb_user_info(db.Model):
+    user_email = db.Column(db.String(45), db.ForeignKey('tb_user.user_email', ondelete='CASCADE'), primary_key=True)
+    user_weight = db.Column(db.Decimal(4, 1), nullable=True)
+    user_height = db.Column(db.SmallInteger, nullable=True)
+    user_birth = db.Column(db.Date, nullable=True)
+    user_cal = db.Column(db.Decimal(5, 1), nullable=True)
+    user_goal = db.Column(db.Decimal(4, 1), nullable=True)
+    user_sex = db.Column(db.Boolean, nullable=True)
+
+class tb_user_img(db.Model):
+    upload_index = db.Column(db.Integer, primary_key=True)
+    upload_user = db.Column(db.String(45), db.ForeignKey('tb_user.user_email', ondelete='SET NULL'))
+    upload_location = db.Column(db.String(45), nullable=False)
+    upload_isnew = db.Column(db.Boolean, nullable=False)
+
+class tb_food_img(db.Model):
+    food_index = db.Column(db.Integer, primary_key=True)
+    food_name = db.Column(db.String(45), nullable=False)
+    food_cal = db.Column(db.Decimal(5, 1), nullable=True)
+    food_img = db.Column(db.String(45), nullable=False)
+
+class tb_board(db.Model):
+    brd_index = db.Column(db.Integer, primary_key=True)
+    brd_user = db.Column(db.String(45), nullable=False)
+    brd_title = db.Column(db.String(45), nullable=False)
+    brd_content = db.Column(db.Text(), nullable=False)
