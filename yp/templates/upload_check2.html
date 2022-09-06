@@ -7,10 +7,12 @@
     <title>Document</title>
 </head>
 <body>
+    <form action="{{ url_for('upload.how') }}" method = "get">
     {% for food in food_list %}
-    <a type="button" method="GET" name = "food_name" value = "{{ food }}" href="{{ url_for('upload.how') }}">{{ food }}</button>
+    <input type="submit" name = "food_name" value = "{{ food }}" >
     {% endfor %}
     <input placeholder="직접 입력하기" name = "food_name">
-    <a type="button" method="GET" href="{{ url_for('upload.how') }}">next</button>
+    <button type="submit">next</button>
+    </form>
 </body>
 </html>

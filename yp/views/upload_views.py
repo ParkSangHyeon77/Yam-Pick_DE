@@ -45,6 +45,8 @@ def double_check():
 
 @bp.route("/how")
 def how():
+    print(request)
+    print(request.args)
     NEW_IMG.upload_foodname = request.args.get("food_name")
     NEW_IMG.upload_isnew = True
     db.session.add(NEW_IMG)
