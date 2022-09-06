@@ -11,6 +11,7 @@ SQLALCHEMY_DATABASE_URI = "mysql+mysqldb://{username}:{password}@{hostname}/{dat
 
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+
 # engine = create_engine(SQLALCHEMY_DATABASE_URI, pool_recycle=280)
 
 # import os
