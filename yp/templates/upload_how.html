@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+    	<img src = {{url_for("static", filename = photo)}}>
+    </div>
+    <form action="{{ url_for('upload.result') }}" method = "post">
+        <input type="submit" value = 0.2 name = "ratio">
+        <input type="submit" value = 0.4 name = "ratio">
+        <input type="submit" value = 0.6 name = "ratio">
+        <input type="submit" value = 0.8 name = "ratio">
+        <input type="submit" value = 1 name = "ratio">
+    </form>
+</body>
+</html>

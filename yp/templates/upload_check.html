@@ -7,9 +7,12 @@
     <title>Document</title>
 </head>
 <body>
+    <div>
+    	<img src = {{url_for("static", filename = photo)}}>
+    </div>
     이 음식은 {{first}}(이)가 맞나요?
     <p>
-        <form action="{{ url_for('upload.how') }}" method = "get">
+        <form action="{{ url_for('upload.how') }}" method = "post">
             <input type="submit" name = "food_name" value = "{{ first }}" >
         </form>
     </p>
