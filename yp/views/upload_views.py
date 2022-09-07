@@ -3,6 +3,10 @@ from yp.models import tb_user_img
 from yp import db
 from sqlalchemy import func
 
+from yp.views.auth_views import session
+from yp.models import tb_user
+
+
 bp = Blueprint('upload', __name__, url_prefix='/upload')
 NEW_IMG = None
 

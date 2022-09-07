@@ -15,3 +15,7 @@ class UserCreateForm(FlaskForm):
     user_cal = DecimalField('칼로리', places=1)
     user_goal = DecimalField('목표체중', places=1)
     user_sex = BooleanField()
+
+class UserLoginForm(FlaskForm):
+    email = EmailField('이메일', validators=[DataRequired(), Email()])
+    password = PasswordField('비밀번호', validators=[DataRequired()])

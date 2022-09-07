@@ -8,12 +8,21 @@
 </head>
 <body>
     <p>
-        <a href ="/auth/signup">회원가입</a>
-        <a href ="/auth/login">로그인</a>
+        {% if login ==True %}
+        <h3>로그인에 성공했습니다. {{username}}님 어서오세요!</h3>
         <a href ="/upload">업로드</a>
         <a href ="/data">데이터</a>
         <a href ="/aboutus">만든이들</a>
         <a href ="/data">더 알아보기</a>
+        <a href = "{{ url_for('auth.logout') }}">로그아웃</a>
+        
+        {% else %}
+        <a href ="/auth/signup">회원가입</a>
+        <a href ="/auth/login">로그인</a>
+        <a href ="/aboutus">만든이들</a>
+        <a href ="/auth/login">더 알아보기</a>
+        {% endif %}
+
     </p>
 </body>
 </html>
