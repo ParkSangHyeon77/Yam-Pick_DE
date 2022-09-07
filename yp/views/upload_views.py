@@ -47,22 +47,24 @@ def double_check():
         return render_template("upload_check2.html", food_list = model_result[1:], photo = f"img/{NEW_IMG.upload_index}.jpeg")
 
     else:
-        return "잘못된 접근입니다." # 에러 페이지 만들거나 홈으로 돌아가기
+        return render_template("error.html") # 에러 페이지 만들거나 홈으로 돌아가기
 
 
 @bp.route("/how", methods=["POST"])
 def how():
-    NEW_IMG.upload_foodname = request.form["food_name"]
+    if NEW_IMG:
+        NEW_IMG.upload_foodname = request.form["food_name"]
 
-    # 이미 가지고 있는 음식 목록에 있다면
-    if NEW_IMG.upload_foodname in ['김치찌개', '된장찌개']:
-        NEW_IMG.upload_isnew = False
+        # 이미 가지고 있는 음식 목록에 있다면
+        if NEW_IMG.upload_foodname in ['김치찌개', '된장찌개']:
+            NEW_IMG.upload_isnew = False
+        else:
+            NEW_IMG.upload_isnew = True
+        db.session.add(NEW_IMG)
+        db.session.commit()
+        return render_template("upload_how.html", photo = f"img/{NEW_IMG.upload_index}.jpeg")
     else:
-        NEW_IMG.upload_isnew = True
-    db.session.add(NEW_IMG)
-    db.session.commit()
-    return render_template("upload_how.html", photo = f"img/{NEW_IMG.upload_index}.jpeg")
-
+        return render_template("error.html")
 @bp.route("/result", methods=["POST"])
 def result():
     if NEW_IMG.upload_isnew:

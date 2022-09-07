@@ -14,7 +14,9 @@
         <a href ="/data">데이터</a>
         <a href ="/aboutus">만든이들</a>
         <a href ="/data">더 알아보기</a>
-        <a href = "{{ url_for('auth.logout') }}">로그아웃</a>
+        <a href ="/mypage/">회원정보수정</a>
+        <a href ="{{ url_for('auth.logout') }}">로그아웃</a>
+        <a href ="/leave/">회원탈퇴</a>
         
         {% else %}
         <a href ="/auth/signup">회원가입</a>
