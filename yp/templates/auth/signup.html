@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="container">
+        <h5 class="my-3 border-bottom pb-2">회원가입</h5>
+        <form method="post">
+            {{ form.csrf_token }}
+            {% include "form_errors.html" %}
+            <div class="mb-3">
+                <input type="text" class="form-control" name="email" id="email" 
+                        placeholder="이메일" value="{{ form.email.data or '' }}">
+            </div>
+            <div class="mb-3">
+                <input type="password" class="form-control" name="password1" id="password1"
+                        placeholder="비밀번호" value="{{ form.password1.data or '' }}">
+            </div>
+            <div class="mb-3">
+                <input type="password" class="form-control" name="password2" id="password2"
+                        placeholder="비밀번호 확인" value="{{ form.password2.data or '' }}">
+            </div>
+            <div class="mb-3">
+                <input type="text" class="form-control" name="username" id="username"
+                        placeholder="이름 (3-8자)" value="{{ form.username.data or '' }}">
+            </div>
+            <button type="submit" class="btn btn-primary">회원가입</button>
+        </form>
+    </div>
+
+</body>
+</html>
+
