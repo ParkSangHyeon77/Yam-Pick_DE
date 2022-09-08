@@ -1,9 +1,8 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, session
 import pandas as pd
 import json
 import plotly
 import plotly.express as px
-from yp.views.auth_views import session
 from yp.models import tb_user
 
 bp = Blueprint('main', __name__, url_prefix='/')

@@ -1,10 +1,11 @@
-from flask import Blueprint, render_template, request, url_for, redirect
+from flask import Blueprint, render_template, request, url_for, redirect, session
 from yp.models import tb_user_img
 from yp import db
 from sqlalchemy import func
 
-from yp.views.auth_views import session
 from yp.models import tb_user
+import func_user__nutrient
+import func_ml
 
 
 bp = Blueprint('upload', __name__, url_prefix='/upload')
@@ -36,14 +37,19 @@ def upload_done():
     uploaded_files.save(NEW_IMG.upload_location)
 
     # DS 결과
+    # model_result = func_ml.image_prediction_result(NEW_IMG.upload_location, model_dir, model_name)
+
     global model_result
     model_result = ['김치찌개', '부대찌개', '등갈비', '냉면', '시리얼']
+
+    # return render_template("upload_check.html", first = model_result["TOP1"], photo = f"img/{NEW_IMG.upload_index}.jpeg")
 
     return render_template("upload_check.html", first = model_result[0], photo = f"img/{NEW_IMG.upload_index}.jpeg")
 
 @bp.route("/re")
 def double_check():
     if NEW_IMG:
+        # return render_template("upload_check2.html", food_list = model_result["TOP2to5"], photo = f"img/{NEW_IMG.upload_index}.jpeg")
         return render_template("upload_check2.html", food_list = model_result[1:], photo = f"img/{NEW_IMG.upload_index}.jpeg")
 
     else:

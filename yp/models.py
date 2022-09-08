@@ -13,6 +13,7 @@ class tb_user_info(db.Model):
     user_cal = db.Column(db.FLOAT(10), nullable=True)
     user_goal = db.Column(db.FLOAT(10), nullable=True)
     user_sex = db.Column(db.Boolean, nullable=True)
+    user_pa = db.Column(db.SmallInteger, nullable=True)
 
 class tb_user_img(db.Model):
     upload_index = db.Column(db.Integer, primary_key=True)

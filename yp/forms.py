@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, PasswordField, EmailField, DecimalField, BooleanField, DateField
+from wtforms import StringField, TextAreaField, PasswordField, EmailField, DecimalField, BooleanField, DateField, IntegerField
 from wtforms.validators import DataRequired, Length, EqualTo, Email
 
 class UserCreateForm(FlaskForm):
@@ -9,12 +9,14 @@ class UserCreateForm(FlaskForm):
     password2 = PasswordField('비밀번호확인', validators=[DataRequired()])
     email = EmailField('이메일', validators=[DataRequired(), Email()])
 
+class UserInfoForm(FlaskForm):
     user_weight = DecimalField('몸무게', places=1)
     user_height = DecimalField('키', places=1)
     user_birth = DateField('생일', format='%Y-%m-%d')
     user_cal = DecimalField('칼로리', places=1)
     user_goal = DecimalField('목표체중', places=1)
     user_sex = BooleanField()
+    user_pa = IntegerField('활동량')
 
 class UserLoginForm(FlaskForm):
     email = EmailField('이메일', validators=[DataRequired(), Email()])

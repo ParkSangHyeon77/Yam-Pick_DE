@@ -4,14 +4,15 @@ from werkzeug.utils import redirect
 from datetime import datetime
 
 from yp import db
-from yp.forms import UserCreateForm, UserLoginForm
+from yp.forms import UserCreateForm, UserInfoForm, UserLoginForm
 from yp.models import tb_user, tb_user_info
+
+import func_user__nutrient
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 @bp.route('/signup/', methods=('GET', 'POST'))
 def signup():
-    global form
     form = UserCreateForm()
     if request.method == 'POST' and form.validate_on_submit():
         email = tb_user.query.filter_by(user_email=form.email.data).first()
@@ -22,6 +23,9 @@ def signup():
                         user_email=form.email.data)
             db.session.add(user)
             db.session.commit()
+
+            session.clear()
+            session['user'] = user.user_email
             return redirect(url_for('auth.more_info'))
         else:
             flash('이미 존재하는 이메일입니다.')
@@ -29,15 +33,26 @@ def signup():
 
 @bp.route('/more_info/', methods=('GET', 'POST'))
 def more_info():
+    form = UserInfoForm()
     today = datetime.now().date()
-    if request.method == 'POST':
-        user = tb_user_info(user_email=form.email.data,
-                            user_weight=form.user_weight.data,
-                            user_height=form.user_height.data,
+    if request.method == 'POST' and form.validate_on_submit():
+        user = tb_user_info(user_email=session['user'],
+                            user_weight=int(form.user_weight.data),
+                            user_height=int(form.user_height.data),
                             user_birth=form.user_birth.data,
                             user_cal=form.user_cal.data,
-                            user_goal=form.user_goal.data,
-                            user_sex=form.user_sex.data)
+                            user_goal=int(form.user_goal.data),
+                            user_sex=form.user_sex.data,
+                            user_pa=form.user_pa.data
+                            )
+        """
+        user_age = None
+
+        weight_s = func_user__nutrient.standard_weight(form.user_sex.data, int(form.user_height.data))
+        weight_a = func_user__nutrient.adjusted_weight(int(form.user_weight.data), weight_s)
+        calorie = func_user__nutrient.calorie_counting(form.user_sex, )
+        """
+
         db.session.add(user)
         db.session.commit()
         return redirect(url_for('main.main'))
@@ -72,3 +87,37 @@ def load_logged_in_user():
 def logout():
     session.clear()
     return redirect(url_for('main.main'))
+
+
+"""
+@bp.route('/mypage/', methods=('GET', 'POST'))
+def mypage():
+    if g.user:
+        if request.method == 'POST' and form.validate_on_submit():
+            user = tb_user_info(user_email=form.email.data,
+                                user_weight=int(form.user_weight.data),
+                                user_height=int(form.user_height.data),
+                                user_birth=form.user_birth.data,
+                                user_cal=form.user_cal.data,
+                                user_goal=int(form.user_goal.data),
+                                user_sex=form.user_sex.data)
+            db.session.add(user)
+            db.session.commit()
+            return redirect(url_for('auth.mypage'))
+        return render_template('mypage.html')
+    else:
+        return render_template("error.html")
+
+@bp.route('/signout/', methods=('GET', 'POST'))
+def signout():
+    if g.user:
+        if request.method == 'POST':
+            del_user = session.delete(tb_user).where(tb_user.user_email == g.user)
+            db.session.add(del_user)
+            db.session.commit()
+            session.clear()
+            return render_template('main.html')
+        return render_template('signout.html')
+    else:
+        return render_template("error.html")
+"""
