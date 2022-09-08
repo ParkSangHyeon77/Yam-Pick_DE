@@ -7,8 +7,6 @@ from yp import db
 from yp.forms import UserCreateForm, UserInfoForm, UserLoginForm
 from yp.models import tb_user, tb_user_info
 
-import func_user__nutrient
-
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 @bp.route('/signup/', methods=('GET', 'POST'))
@@ -45,13 +43,6 @@ def more_info():
                             user_sex=form.user_sex.data,
                             user_pa=form.user_pa.data
                             )
-        """
-        user_age = None
-
-        weight_s = func_user__nutrient.standard_weight(form.user_sex.data, int(form.user_height.data))
-        weight_a = func_user__nutrient.adjusted_weight(int(form.user_weight.data), weight_s)
-        calorie = func_user__nutrient.calorie_counting(form.user_sex, )
-        """
 
         db.session.add(user)
         db.session.commit()
@@ -80,8 +71,10 @@ def load_logged_in_user():
     user_email = session.get('user')
     if user_email is None:
         g.user = None
+        g.user_info = None
     else:
         g.user = tb_user.query.get(user_email)
+        g.user_info = tb_user_info.query.get(user_email)
 
 @bp.route('/logout/')
 def logout():

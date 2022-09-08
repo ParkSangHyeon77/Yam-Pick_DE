@@ -7,6 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-    
+    {{ text }}
+    {% for res in res_list %}
+    <div>
+    	{{res.food_name}}
+    </div>
+    {% endfor %}
 </body>
 </html>

@@ -78,13 +78,13 @@ def necessary_nutrients(sex, age, weight, calorie):
 
 
 ## 영한 변환
-# {'carbohydrate' : '탄수화물' ,'fat' :'지방' ,'protein ' : '단백질' ,'moisture ' : '수분' ,
-# 'vitamin_A' : '비타민_A' ,'vitamin_D' : '비타민_D3' ,'vitamin_E' : '비타민_E' ,'vitamin_C' : '비타민_C' ,
-# 'folic_acid' : '엽산' ,'phosphorus' : '인' ,'sodium ': '나트륨' ,'potassium': '칼륨' ,
-# 'manganese' : '마그네슘' ,'selenium' :'셀레늄' ,'dietary_fiber' : '총_식이섬유' ,'thiamin ': '비타민_B1' ,
-# 'riboflavin' : '비타민_B2' ,'niacin' : '나이아신' ,'calcium' :'칼슘' ,'magnesium' : '마그네슘' ,'iron' : '철' ,
-# 'zinc' : '아연' ,'copper' : '구리' ,'linolenic_acid' : '리놀레산' ,'a_linolenic_acid' : '알파_리놀렌산' ,
-# 'unsaturated_fatty_aci' : 'EPA-DHA'}
+en_ko_dict = {'carbohydrate' : '탄수화물' ,'fat' :'지방' ,'protein ' : '단백질' ,'moisture ' : '수분' ,
+'vitamin_A' : '비타민_A' ,'vitamin_D' : '비타민_D3' ,'vitamin_E' : '비타민_E' ,'vitamin_C' : '비타민_C' ,
+'folic_acid' : '엽산' ,'phosphorus' : '인' ,'sodium ': '나트륨' ,'potassium': '칼륨' ,
+'manganese' : '마그네슘' ,'selenium' :'셀레늄' ,'dietary_fiber' : '총_식이섬유' ,'thiamin ': '비타민_B1' ,
+'riboflavin' : '비타민_B2' ,'niacin' : '나이아신' ,'calcium' :'칼슘' ,'magnesium' : '마그네슘' ,'iron' : '철' ,
+'zinc' : '아연' ,'copper' : '구리' ,'linolenic_acid' : '리놀레산' ,'a_linolenic_acid' : '알파_리놀렌산' ,
+'unsaturated_fatty_aci' : 'EPA-DHA'}
 
 ## 순서
 # 1. standard_weight(sex, height) -> return weight_s
@@ -102,3 +102,17 @@ def necessary_nutrients(sex, age, weight, calorie):
 # 2 -> 일주일에 4~5회 운동
 # 3 -> 강도 높은 운동 3~4회
 # 4 -> 강도 높은 운동 6~7회
+
+from datetime import datetime
+def user_age(birthday, standard = datetime.now()):
+    if standard.month - birthday.month > 0:
+        age = standard.year - birthday.year
+    elif standard.month == birthday.month:
+        if standard.day - birthday.day >= 0:
+            age = standard.year - birthday.year
+        else:
+            age = standard.year - birthday.year - 1
+    else:
+        age = standard.year - birthday.year - 1
+    
+    return age

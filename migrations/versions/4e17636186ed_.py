@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 73b7a4ff4da3
+Revision ID: 4e17636186ed
 Revises: 
-Create Date: 2022-09-06 23:39:47.197264
+Create Date: 2022-09-08 13:44:27.536308
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '73b7a4ff4da3'
+revision = '4e17636186ed'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -28,8 +28,34 @@ def upgrade():
     op.create_table('tb_food_img',
     sa.Column('food_index', sa.Integer(), nullable=False),
     sa.Column('food_name', sa.String(length=45), nullable=False),
-    sa.Column('food_cal', sa.FLOAT(precision=10), nullable=True),
-    sa.Column('food_img', sa.String(length=45), nullable=False),
+    sa.Column('food_img', sa.String(length=45), nullable=True),
+    sa.Column('energy', sa.FLOAT(precision=10), nullable=True),
+    sa.Column('carbohydrate', sa.FLOAT(precision=10), nullable=True),
+    sa.Column('fat', sa.FLOAT(precision=10), nullable=True),
+    sa.Column('protein', sa.FLOAT(precision=10), nullable=True),
+    sa.Column('moisture', sa.FLOAT(precision=10), nullable=True),
+    sa.Column('vitamin_A', sa.FLOAT(precision=10), nullable=True),
+    sa.Column('vitamin_D', sa.FLOAT(precision=10), nullable=True),
+    sa.Column('vitamin_E', sa.FLOAT(precision=10), nullable=True),
+    sa.Column('vitamin_C', sa.FLOAT(precision=10), nullable=True),
+    sa.Column('folic_acid', sa.FLOAT(precision=10), nullable=True),
+    sa.Column('phosphorus', sa.FLOAT(precision=10), nullable=True),
+    sa.Column('sodium', sa.FLOAT(precision=10), nullable=True),
+    sa.Column('potassium', sa.FLOAT(precision=10), nullable=True),
+    sa.Column('manganese', sa.FLOAT(precision=10), nullable=True),
+    sa.Column('selenium', sa.FLOAT(precision=10), nullable=True),
+    sa.Column('dietary_fiber', sa.FLOAT(precision=10), nullable=True),
+    sa.Column('thiamin', sa.FLOAT(precision=10), nullable=True),
+    sa.Column('riboflavin', sa.FLOAT(precision=10), nullable=True),
+    sa.Column('niacin', sa.FLOAT(precision=10), nullable=True),
+    sa.Column('calcium', sa.FLOAT(precision=10), nullable=True),
+    sa.Column('magnesium', sa.FLOAT(precision=10), nullable=True),
+    sa.Column('iron', sa.FLOAT(precision=10), nullable=True),
+    sa.Column('zinc', sa.FLOAT(precision=10), nullable=True),
+    sa.Column('copper', sa.FLOAT(precision=10), nullable=True),
+    sa.Column('linolenic_acid', sa.FLOAT(precision=10), nullable=True),
+    sa.Column('a_linolenic_acid', sa.FLOAT(precision=10), nullable=True),
+    sa.Column('unsaturated_fatty_aci', sa.FLOAT(precision=10), nullable=True),
     sa.PrimaryKeyConstraint('food_index')
     )
     op.create_table('tb_user',
@@ -55,6 +81,7 @@ def upgrade():
     sa.Column('user_cal', sa.FLOAT(precision=10), nullable=True),
     sa.Column('user_goal', sa.FLOAT(precision=10), nullable=True),
     sa.Column('user_sex', sa.Boolean(), nullable=True),
+    sa.Column('user_pa', sa.SmallInteger(), nullable=True),
     sa.ForeignKeyConstraint(['user_email'], ['tb_user.user_email'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('user_email')
     )
