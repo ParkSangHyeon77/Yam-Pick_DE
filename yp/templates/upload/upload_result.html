@@ -1,0 +1,16 @@
+{% extends "main.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+<body>
+    {{ text }}
+    {% for res in res_list %}
+    <div>
+    	{{res.food_name}}
+    </div>
+    {% endfor %}
+</body>
+{% endblock %}
+</html>

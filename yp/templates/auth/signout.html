@@ -1,13 +1,18 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+{% extends "main.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
 <body>
-    정말 탈퇴하시겠습니까? [네] [아니오]
-    <!-- 메인 화면으로 이동 -->
+    <p>
+        탈퇴하시겠습니까?
+    </p>
+    <p>
+        <form action="{{ url_for('auth.signout') }}" method = "post">
+            <input type="submit" name = "name" value = "회원탈퇴" >
+        </form>
+    </p>
 </body>
+{% endblock %}
 </html>

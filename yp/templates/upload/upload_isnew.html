@@ -1,0 +1,20 @@
+{% extends "main.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+<body>
+    <body>
+        <p>
+            Yam-Pick 데이터 베이스에 존재하지 않는 음식입니다.
+        </p>
+        <p>
+            <form action="{{ url_for('main.main') }}">
+                <input type="submit" name = "food_name" value = "home" >
+            </form>
+        </p>
+    </body>
+</body>
+{% endblock %}
+</html>

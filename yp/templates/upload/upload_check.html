@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+{% extends "main.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
 <body>
     <div>
     	<img src = {{url_for("static", filename = photo)}}>
@@ -20,4 +18,5 @@
         <a href ="{{ url_for('upload.double_check') }}">아니요</a>
     </p>
 </body>
+{% endblock %}
 </html>

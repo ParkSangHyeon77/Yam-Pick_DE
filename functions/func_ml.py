@@ -1,10 +1,6 @@
-import os
-import csv
-import time
 from PIL import Image
 import numpy as np
 from skimage import transform
-from tensorflow.keras.preprocessing.image import ImageDataGenerator, array_to_img, img_to_array, load_img
 import tensorflow as tf
 
 class_names = ['간장게장', '갈비구이', '갈비찜', '갈비탕', '갈치구이', '갈치조림', '감자전', '감자조림', '감자탕', '갓김치', '건새우볶음', '경단', 

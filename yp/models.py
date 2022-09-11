@@ -4,11 +4,12 @@ class tb_user(db.Model):
     user_email = db.Column(db.String(45), primary_key=True)
     user_pw = db.Column(db.String(45), nullable=False)
     user_name = db.Column(db.String(16), nullable=False)
+    user_status = db.Column(db.SmallInteger, nullable=True)
 
 class tb_user_info(db.Model):
     user_email = db.Column(db.String(45), db.ForeignKey('tb_user.user_email', ondelete='CASCADE'), primary_key=True)
     user_weight = db.Column(db.FLOAT(10), nullable=True)
-    user_height = db.Column(db.SmallInteger, nullable=True)
+    user_height = db.Column(db.FLOAT(10), nullable=True)
     user_birth = db.Column(db.Date, nullable=True)
     user_cal = db.Column(db.FLOAT(10), nullable=True)
     user_goal = db.Column(db.FLOAT(10), nullable=True)

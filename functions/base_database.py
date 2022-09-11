@@ -8,7 +8,7 @@ food_dir = 'yp/static/img/food_rec'
 food_list = list(map(lambda food: food.split('.')[0], os.listdir(food_dir)))
 
 def base_database():        
-    df = pd.read_csv("DB__ver2.csv")
+    df = pd.read_csv("functions/DB__ver2.csv")
 
     for i in range(len(df)):
         food = tb_food_img(food_name=df.iloc[i]['식품명'],

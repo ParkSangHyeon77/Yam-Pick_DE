@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 4e17636186ed
+Revision ID: 5318354c7d8d
 Revises: 
-Create Date: 2022-09-08 13:44:27.536308
+Create Date: 2022-09-11 15:20:18.945225
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '4e17636186ed'
+revision = '5318354c7d8d'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -62,6 +62,7 @@ def upgrade():
     sa.Column('user_email', sa.String(length=45), nullable=False),
     sa.Column('user_pw', sa.String(length=45), nullable=False),
     sa.Column('user_name', sa.String(length=16), nullable=False),
+    sa.Column('user_status', sa.SmallInteger(), nullable=True),
     sa.PrimaryKeyConstraint('user_email')
     )
     op.create_table('tb_user_img',
@@ -76,7 +77,7 @@ def upgrade():
     op.create_table('tb_user_info',
     sa.Column('user_email', sa.String(length=45), nullable=False),
     sa.Column('user_weight', sa.FLOAT(precision=10), nullable=True),
-    sa.Column('user_height', sa.SmallInteger(), nullable=True),
+    sa.Column('user_height', sa.FLOAT(precision=10), nullable=True),
     sa.Column('user_birth', sa.Date(), nullable=True),
     sa.Column('user_cal', sa.FLOAT(precision=10), nullable=True),
     sa.Column('user_goal', sa.FLOAT(precision=10), nullable=True),

@@ -15,6 +15,10 @@ def create_app():
     # ORM
     db.init_app(app)
     migrate.init_app(app, db)
+
+    with app.app_context():
+        db.create_all()
+
     from . import models
 
     # 블루프린트
@@ -23,5 +27,8 @@ def create_app():
     app.register_blueprint(upload_views.bp)
     app.register_blueprint(auth_views.bp)
     app.register_blueprint(admin_views.bp)
+
+    from yp.plotlydash.dashboard import create_dashboard
+    app = create_dashboard(app)
 
     return app

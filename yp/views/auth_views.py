@@ -15,10 +15,10 @@ def signup():
     if request.method == 'POST' and form.validate_on_submit():
         email = tb_user.query.filter_by(user_email=form.email.data).first()
         if not email:
-            useremail = form.email.data
             user = tb_user(user_name=form.username.data,
                         user_pw=generate_password_hash(form.password1.data),
-                        user_email=form.email.data)
+                        user_email=form.email.data,
+                        user_status=1)
             db.session.add(user)
             db.session.commit()
 
@@ -82,35 +82,15 @@ def logout():
     return redirect(url_for('main.main'))
 
 
-"""
-@bp.route('/mypage/', methods=('GET', 'POST'))
-def mypage():
-    if g.user:
-        if request.method == 'POST' and form.validate_on_submit():
-            user = tb_user_info(user_email=form.email.data,
-                                user_weight=int(form.user_weight.data),
-                                user_height=int(form.user_height.data),
-                                user_birth=form.user_birth.data,
-                                user_cal=form.user_cal.data,
-                                user_goal=int(form.user_goal.data),
-                                user_sex=form.user_sex.data)
-            db.session.add(user)
-            db.session.commit()
-            return redirect(url_for('auth.mypage'))
-        return render_template('mypage.html')
-    else:
-        return render_template("error.html")
-
 @bp.route('/signout/', methods=('GET', 'POST'))
 def signout():
     if g.user:
         if request.method == 'POST':
-            del_user = session.delete(tb_user).where(tb_user.user_email == g.user)
-            db.session.add(del_user)
+            user = db.session.query(tb_user).filter_by(user_email=g.user.user_email).first()
+            db.session.delete(user)
             db.session.commit()
             session.clear()
             return render_template('main.html')
-        return render_template('signout.html')
+        return render_template('auth/signout.html')
     else:
         return render_template("error.html")
-"""
