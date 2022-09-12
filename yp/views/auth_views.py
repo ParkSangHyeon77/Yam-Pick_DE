@@ -91,9 +91,9 @@ def signout():
             db.session.commit()
             session.clear()
             return render_template('main.html')
-        return render_template('auth/signout.html')
+        return render_template('auth/signout.html', login = True)
     else:
-        return render_template("error.html")
+        return render_template("error.html", login = True)
 
 # @bp.route('/mypage/', methods=('GET', 'POST'))
 # def mypage():
