@@ -43,12 +43,12 @@
 <body class="text-center">
 <main class="form-signin">
     <div class="container">
-        <h5 class="my-3 border-bottom pb-2">회원가입이 완료되었습니다!</h5>
+        <h5 class="my-3 border-bottom pb-2">회원가입이 완료되었습니다!<br> 추가정보를 입력해주세요</h5>
         <form method="post">
             {{ form.csrf_token }}
             {% include "form_errors.html" %}
             <div class="mb-3">
-                <input type="date" class="form-control" name="user_birth" id="user_birth" 
+                <input type="date" value="{{ today }}" min="1922-01-01" max="{{ today }}" class="form-control" name="user_birth" id="user_birth" 
                         placeholder="생일" value="{{ form.user_birth.data or '' }}">
             </div>
             <!-- <div class="mb-3">
@@ -67,6 +67,7 @@
                 <input type="text" class="form-control" name="user_goal" id="user_goal"
                         placeholder="목표체중" value="{{ form.user_goal.data or '' }}">
             </div>
+            
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="user_sex" id="inlineRadio1" value="1">
                 <label class="form-check-label" for="inlineRadio1">남</label>
@@ -75,7 +76,8 @@
                 <input class="form-check-input" type="radio" name="user_sex" id="inlineRadio2" value="0">
                 <label class="form-check-label" for="inlineRadio2">여</label>
               </div>
-            <div class="form-check form-check-inline">
+            
+              <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="user_pa" id="inlineRadio1" value="1">
                 <label class="form-check-label" for="inlineRadio1">일주일에 1~3회 운동</label>
               </div>

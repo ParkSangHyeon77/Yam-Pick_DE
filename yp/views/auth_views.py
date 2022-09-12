@@ -94,3 +94,45 @@ def signout():
         return render_template('auth/signout.html')
     else:
         return render_template("error.html")
+
+# @bp.route('/mypage/', methods=('GET', 'POST'))
+# def mypage():
+#     form = UserInfoForm()
+#     return render_template("auth/mypage.html", login = True)
+
+# @bp.route('/mypage/', methods=('GET', 'POST'))
+# def mypage():
+#     form = UserInfoForm()
+#     user_email = session.get('user')
+#     if g.user: 
+#         if request.method == 'GET':
+#             user = tb_user.query.get(user_email)
+#             user_weight = db.session.query(tb_user).filter_by(user_email=g.user.user_email).user_weight(),
+#             user_height = 
+#             user_birth = 
+#             user_cal = 
+#             user_goal = 
+#             user_sex = 
+#             user_pa = 
+
+#         db.session.commit()
+#         return render_template("auth/mypage.html", login = True)
+#     return render_template('auth/more_info.html', )
+
+# @bp.route('/mypage/', methods=('GET', 'POST'))
+# def mypage():
+#     form = UserInfoForm()
+#     if request.method == 'GET':
+#         user = tb_user_info(user_email=session['user'],
+#                             user_weight=int(form.user_weight.data),
+#                             user_height=int(form.user_height.data),
+#                             user_birth=form.user_birth.data,
+#                             user_cal=form.user_cal.data,
+#                             user_goal=int(form.user_goal.data),
+#                             user_sex=form.user_sex.data,
+#                             user_pa=form.user_pa.data
+#                             )
+
+#         db.session.commit()
+#         return redirect(url_for('main.main'))
+#     return render_template("auth/mypage.html", form=form, login = True)

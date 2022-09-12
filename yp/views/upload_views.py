@@ -3,6 +3,8 @@ from yp.models import tb_user_img, tb_food_img
 from yp import db
 from sqlalchemy import func, and_
 from functions import func_ml, func_user__nutrient
+from yp.views.auth_views import session
+from yp.models import tb_user
 
 import config
 import os
@@ -14,34 +16,43 @@ NEW_IMG = None
 
 @bp.route('/')
 def upload():
-    return render_template("upload/upload.html")
+    # if 'user' in session:
+    #   user_email = session.get("user")
+    #   user = tb_user.query.filter_by(user_email=user_email).first()
+    #   return render_template("upload/upload.html", username = user.user_name, login = True)
+    # else:
+    #   return render_template("upload/upload.html", login = False)
+
+    return render_template("upload/upload.html", login = True)
 
 @bp.route("/", methods=["POST"])
 def upload_done():
+    try:
+        global NEW_IMG
+        NEW_IMG = tb_user_img()
+        NEW_IMG.upload_index = db.session.query(func.count(tb_user_img.upload_index)).all()[0][0] + 1
+        NEW_IMG.upload_user = 'geehyun'
+        NEW_IMG.upload_location = os.path.join(config.BASE_DIR, f"yp/static/img/user_upload/{NEW_IMG.upload_index}.jpg")
+
+        uploaded_files = request.files["food_img"]
+        uploaded_files.save(NEW_IMG.upload_location)
+
+        # DS 결과
+        global model_result
+        model_result = func_ml.image_prediction_result(NEW_IMG.upload_location, './', 'DenseNet201_129menu.h5')
+
+        return render_template("upload/upload_check.html", first = model_result["TOP1"], photo = f"img/user_upload/{NEW_IMG.upload_index}.jpg", login = True)
     
-    global NEW_IMG
-    NEW_IMG = tb_user_img()
-    NEW_IMG.upload_index = db.session.query(func.count(tb_user_img.upload_index)).all()[0][0] + 1
-    NEW_IMG.upload_user = 'geehyun'
-
-    NEW_IMG.upload_location = os.path.join(config.BASE_DIR, f"yp/static/img/user_upload/{NEW_IMG.upload_index}.jpg")
-
-    uploaded_files = request.files["food_img"]
-    uploaded_files.save(NEW_IMG.upload_location)
-
-    # DS 결과
-    global model_result
-    model_result = func_ml.image_prediction_result(NEW_IMG.upload_location, './', 'DenseNet201_129menu.h5')
-
-    return render_template("upload/upload_check.html", first = model_result["TOP1"], photo = f"img/user_upload/{NEW_IMG.upload_index}.jpg")
+    except:
+        return render_template("error_submit.html", login = True)
 
 @bp.route("/re")
 def double_check():
     if NEW_IMG:
-        return render_template("upload/upload_check2.html", food_list = model_result["TOP2to5"], photo = f"img/user_upload/{NEW_IMG.upload_index}.jpg")
+        return render_template("upload/upload_check2.html", food_list = model_result["TOP2to5"], photo = f"img/user_upload/{NEW_IMG.upload_index}.jpg", login = True)
         
     else:
-        return render_template("error.html")
+        return render_template("error.html", login = True)
 
 
 @bp.route("/how", methods=["POST"])
@@ -55,15 +66,15 @@ def how():
             NEW_IMG.upload_isnew = False
             db.session.add(NEW_IMG)
             db.session.commit()
-            return render_template("upload/upload_how.html", photo = f"img/user_upload/{NEW_IMG.upload_index}.jpg")
+            return render_template("upload/upload_how.html", photo = f"img/user_upload/{NEW_IMG.upload_index}.jpg", login = True)
         else:
             NEW_IMG.upload_isnew = True
             db.session.add(NEW_IMG)
             db.session.commit()
-            return render_template("upload/upload_isnew.html")
+            return render_template("upload/upload_isnew.html", login = True)
 
     else:
-        return render_template("error.html")
+        return render_template("error.html", login = True)
 
 @bp.route("/result", methods=["POST"])
 def result():
@@ -73,7 +84,6 @@ def result():
 
     # 사용자
     user_age = func_user__nutrient.user_age(g.user_info.user_birth, )
-
     weight_s = func_user__nutrient.standard_weight(g.user_info.user_sex, g.user_info.user_height)
     weight_a = func_user__nutrient.adjusted_weight(g.user_info.user_weight, weight_s)
     user_calorie = func_user__nutrient.calorie_counting(g.user_info.user_sex, user_age, g.user_info.user_height, weight_a, str(g.user_info.user_pa))
@@ -102,4 +112,4 @@ def result():
                                                         )
                                                     ).all()
 
-    return render_template("upload/upload_result.html", text=text, res_list=res_list)
+    return render_template("upload/upload_result.html", text=text, res_list=res_list, login = True)

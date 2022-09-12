@@ -1,5 +1,5 @@
 {% extends "main.html" %}
-{% block title %}Index{% endblock %}
+{% block title %}{% endblock %}
 {% block head %}
     {{ super() }}
 {% endblock %}
@@ -16,7 +16,7 @@
     </form>
     <form action="{{ url_for('upload.how') }}" method = "post">
         <input placeholder="직접 입력하기" name = "food_name">
-        <button type="submit">next</button>
+        <button type="submit">제출</button>
     </form>
     </div>
 </body>
