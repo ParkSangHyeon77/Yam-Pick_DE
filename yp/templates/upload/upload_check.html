@@ -15,7 +15,7 @@
                 <input type="submit" name = "food_name" value="{{first}}">
             </form>
         </p>
-        <h5 style="padding-bottom: 10px;"> 아니시라면 아래 버튼을 눌러주세요!</h5>
+        <h5 style="padding-bottom: 10px;"> 다른 음식이면 아래 버튼을 눌러주세요!</h5>
         <p>
             <form action="{{ url_for('upload.double_check') }}" method = "post">
                 <input type="submit" name = "food_name" value="예측 음식">

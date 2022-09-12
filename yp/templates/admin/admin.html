@@ -34,7 +34,6 @@
         }
      </style>
   
-      
       <!-- Custom styles for this template -->
     <!-- <link href="static/css/headers.css" rel="stylesheet"> -->
     {% endblock %}
@@ -43,46 +42,22 @@
   <header class="p-3 bg-dark text-white">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        
-        {% if login ==True %}
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="/" style="text-align: center;">
+          <li><a href="/admin" style="text-align: center;">
             <img src="/static/img/Yam-Pick_logo.jpg" alt="" width="50" height="50">
           </a></li>
-          <li><a href="/" class="nav-link px-2 text-secondary" style="font-size: 1.3em; text-align: center;">Yam-Pick</a></li>
-          <li><a href="/upload" class="nav-link px-2 text-white" style="margin:5px 0px;">업로드</a></li>
+          <li><a href="/admin" class="nav-link px-2 text-secondary" style="font-size: 1.3em; text-align: center;">Yam-Pick</a></li>
+          <!-- <li><a href="/upload" class="nav-link px-2 text-white" style="margin:5px 0px;">업로드</a></li> -->
           <!-- <li><a href="/data" class="nav-link px-2 text-white">데이터</a></li> -->
-          <li><a href="/aboutus" class="nav-link px-2 text-white" style="margin:5px 0px;">만든이들</a></li>
-          <!-- <li><a href="/error" class="nav-link px-2 text-white" style="margin:5px 0px;">에러</a></li> -->
-          <!-- <li><a href="/auth/mypage" class="nav-link px-2 text-white">회원정보 수정</a></li> -->
+          <li><a href="/admin/upload" class="nav-link px-2 text-white" style="margin:5px 0px;">추천음식 등록</a></li>
+          <!-- <li><a href="/aboutus" class="nav-link px-2 text-white" style="margin:5px 0px;">만든이들</a></li> -->
         </ul>
         
         <div class="text-end">
           <a href ="{{ url_for('auth.logout') }}">
           <button type="button" class="btn btn-outline-light me-2">로그아웃</button>
           </a>
-          <a href ="/auth/signout">
-          <button type="button" class="btn btn-warning">회원탈퇴</button>
-          </a>
         </div>
-        {% else %}
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="/" style="text-align: center;">
-            <img src="/static/img/Yam-Pick_logo.jpg" alt="" width="50" height="50">
-          </a></li>
-          <li><a href="/" class="nav-link px-2 text-secondary" style="font-size: 1.3em; text-align: center;">Yam-Pick</a></li>
-          <li><a href="/aboutus" class="nav-link px-2 text-white" style="margin:5px 0px;">만든이들</a></li>
-        </ul>
-
-        <div class="text-end">
-          <a href ="/auth/login">
-          <button type="button" class="btn btn-outline-light me-2">로그인</button>
-          </a>
-          <a href ="/auth/signup">
-          <button type="button" class="btn btn-warning">회원가입</button>
-          </a>
-        </div>
-        {% endif %}
       </div>
     </div>
   </header>
@@ -100,20 +75,9 @@
               사용자가 건강하게 다이어트 목표를 달성 할 수 있도록 지원하는 서비스입니다.
           </p>
           <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-            
-            {% if login ==True %}
-            <a href ="/upload">
-              <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">업로드</button>
+            <a href ="/admin/upload">
+              <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">추천음식 등록</button>
             </a>
-            <!-- <a href="/data">
-            <button type="button" class="btn btn-outline-secondary btn-lg px-4">더 알아보기</button>
-            </a> -->
-            
-            {% else %}
-            <!-- <a href="/auth/login">
-            <button type="button" class="btn btn-outline-secondary btn-lg px-4">더 알아보기</button>
-            </a> -->
-            {% endif %}
           </div>
         </div>
       {% endblock %}
@@ -123,14 +87,13 @@
   <div class="container"> {% block footer %}
       <footer class="py-3 my-4">
           <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-          <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Yam-Pick</a></li>
-          <li class="nav-item"><a href="/aboutus" class="nav-link px-2 text-muted">만든이들</a></li>
+          <li class="nav-item"><a href="/admin" class="nav-link px-2 text-muted">Yam-Pick</a></li>
+          <!-- <li class="nav-item"><a href="/aboutus" class="nav-link px-2 text-muted">만든이들</a></li> -->
           <!-- <li class="nav-item"><a href="/auth/login" class="nav-link px-2 text-muted">더 알아보기</a></li> -->
           </ul>
           <p class="text-center text-muted">&copy; 2022 Yam-Pick, Inc</p>
       </footer>
       {% endblock %}
   </div>
-
 </body>
 </html>

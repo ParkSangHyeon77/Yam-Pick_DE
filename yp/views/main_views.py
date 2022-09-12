@@ -14,6 +14,18 @@ def main():
 
 @bp.route("/aboutus")
 def aboutus():
-   
-   return render_template("aboutus.html")
+   if 'user' in session:
+      user_email = session.get("user")
+      user = tb_user.query.filter_by(user_email=user_email).first()
+      return render_template("aboutus.html", username = user.user_name, login = True)
+   else:
+      return render_template("aboutus.html", login = False)
 
+@bp.route("/error")
+def error():
+   if 'user' in session:
+      user_email = session.get("user")
+      user = tb_user.query.filter_by(user_email=user_email).first()
+      return render_template("error.html", username = user.user_name, login = True)
+   else:
+      return render_template("error.html", login = False)

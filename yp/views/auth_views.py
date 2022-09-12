@@ -59,7 +59,11 @@ def login():
             error = "존재하지 않는 사용자입니다."
         elif not check_password_hash(user.user_pw, form.password.data):
             error = "비밀번호가 올바르지 않습니다."
-        if error is None:
+        elif user.user_email == "miso324@naver.com":
+            session.clear()
+            session['user'] = user.user_email
+            return redirect(url_for('admin.admin'))
+        elif error is None:
             session.clear()
             session['user'] = user.user_email
             return redirect(url_for('main.main'))
