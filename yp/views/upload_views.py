@@ -25,7 +25,7 @@ def upload():
 
     return render_template("upload/upload.html", login = True)
 
-@bp.route("/", methods=["POST"])
+@bp.route("/", methods=["GET","POST"])
 def upload_done():
     try:
         global NEW_IMG
@@ -46,7 +46,7 @@ def upload_done():
     except:
         return render_template("error_submit.html", login = True)
 
-@bp.route("/re")
+@bp.route("/re", methods=["GET","POST"])
 def double_check():
     if NEW_IMG:
         return render_template("upload/upload_check2.html", food_list = model_result["TOP2to5"], photo = f"img/user_upload/{NEW_IMG.upload_index}.jpg", login = True)
@@ -55,7 +55,7 @@ def double_check():
         return render_template("error.html", login = True)
 
 
-@bp.route("/how", methods=["POST"])
+@bp.route("/how", methods=["GET","POST"])
 def how():
     if NEW_IMG:
         NEW_IMG.upload_foodname = request.form["food_name"].replace(" ", "")

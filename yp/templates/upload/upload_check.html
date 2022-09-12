@@ -6,19 +6,20 @@
 {% block content %}
 <body>
     <div style="text-align:center;">
-        <div>
+        <div style="padding-bottom: 10px;">
             <img src = {{url_for("static", filename = photo)}}>
         </div>
-        <h5 style="padding-bottom: 10px;">이 음식은 {{first}}(이)가 맞나요?</h5>
-        <p style="padding-bottom: 10px;">
-            <form action="{{ url_for('upload.how') }}" method = "post">
-                <input type="submit" name = "food_name" value = "맞습니다">
+        <h5 style="padding-bottom: 10px;">이 음식이 {{first}}(이)가 맞나요? 그러면 아래 버튼을 눌러주세요!</h5>
+        <p>
+            <form action="{{ url_for('upload.how') }}" method = "post" style="padding-bottom: 10px;">
+                <input type="submit" name = "food_name" value="{{first}}">
             </form>
         </p>
+        <h5 style="padding-bottom: 10px;"> 아니시라면 아래 버튼을 눌러주세요!</h5>
         <p>
-            <a href ="{{ url_for('upload.double_check') }}">
-                <button type="button">아닙니다</button>
-            </a>
+            <form action="{{ url_for('upload.double_check') }}" method = "post">
+                <input type="submit" name = "food_name" value="예측 음식">
+            </form>
         </p>
     </div>
 </body>

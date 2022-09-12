@@ -5,12 +5,15 @@
 {% endblock %}
 {% block content %}
 <body>
-    {{ text }}
-    {% for res in res_list %}
-    <div>
-    	{{res.food_name}}
+    <div >
+        <h5 style="padding-bottom: 10px;">{{ text }}</h5>
+        
+        {% for res in res_list %}
+        <div>
+            {{res.food_name}}
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </body>
 {% endblock %}
 </html>

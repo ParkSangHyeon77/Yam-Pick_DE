@@ -55,9 +55,9 @@
           </a></li> -->
           <li><a href="/" class="nav-link px-2 text-secondary" style="font-size: 1.2em;">Yam-Pick</a></li>
           <li><a href="/upload" class="nav-link px-2 text-white">업로드</a></li>
-          <li><a href="/data" class="nav-link px-2 text-white">데이터</a></li>
+          <!-- <li><a href="/data" class="nav-link px-2 text-white">데이터</a></li> -->
           <li><a href="/aboutus" class="nav-link px-2 text-white">만든이들</a></li>
-          <li><a href="/auth/mypage" class="nav-link px-2 text-white">회원정보 수정</a></li>
+          <!-- <li><a href="/auth/mypage" class="nav-link px-2 text-white">회원정보 수정</a></li> -->
           <!-- <li><a href="{{ url_for('auth.logout') }}" class="nav-link px-2 text-white">로그아웃</a></li>
           <li><a href="/auth/signout" class="nav-link px-2 text-white">회원탈퇴</a></li> -->
         </ul>
@@ -67,7 +67,7 @@
           <button type="button" class="btn btn-outline-light me-2">Logout</button>
           </a>
           <a href ="/auth/signout">
-          <button type="button" class="btn btn-warning">Sign-out</button>
+          <button type="button" class="btn btn-warning">회원탈퇴</button>
           </a>
         </div>
         {% else %}
@@ -81,7 +81,7 @@
           <button type="button" class="btn btn-outline-light me-2">Login</button>
           </a>
           <a href ="/auth/signup">
-          <button type="button" class="btn btn-warning">Sign-up</button>
+          <button type="button" class="btn btn-warning">회원가입</button>
           </a>
         </div>
         {% endif %}
@@ -97,9 +97,9 @@
         <div class="col-lg-6">
           <h1 class="display-5 fw-bold lh-1 mb-3">한식의 놀라운 비밀 알고 계신가요?</h1>
           <p class="lead">
-              한식의 영양 성분을 분석한 결과는 DA팀에서 알려 줄 것입니다.<br>
-              문구가 마음에 들지 않으실텐데 바꾸시는 건 언제든 환영입니다!<br>
-              아직 많이 부족하지만 계속해서 수정해보겠습니다.
+              한식의 영양 성분을 분석한 결과를 제공하여 다이어트의 본래의 의미를 되찾고자 합니다.<br>
+              다이어트 식단관리에 필요한 복잡한 영양성분을 계산, 기록, 분석하여 제공하고 합니다.<br>
+              사용자가 건강하게 다이어트 목표를 달성 할 수 있도록 지원하는 서비스입니다.
           </p>
           <div class="d-grid gap-2 d-md-flex justify-content-md-start">
             
@@ -107,14 +107,14 @@
             <a href ="/upload">
               <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">업로드</button>
             </a>
-            <a href="/data">
+            <!-- <a href="/data">
             <button type="button" class="btn btn-outline-secondary btn-lg px-4">더 알아보기</button>
-            </a>
+            </a> -->
             
             {% else %}
-            <a href="/auth/login">
+            <!-- <a href="/auth/login">
             <button type="button" class="btn btn-outline-secondary btn-lg px-4">더 알아보기</button>
-            </a>
+            </a> -->
             {% endif %}
           </div>
         </div>

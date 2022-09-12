@@ -103,21 +103,29 @@ def signout():
 # @bp.route('/mypage/', methods=('GET', 'POST'))
 # def mypage():
 #     form = UserInfoForm()
-#     user_email = session.get('user')
-#     if g.user: 
-#         if request.method == 'GET':
-#             user = tb_user.query.get(user_email)
-#             user_weight = db.session.query(tb_user).filter_by(user_email=g.user.user_email).user_weight(),
-#             user_height = 
-#             user_birth = 
-#             user_cal = 
-#             user_goal = 
-#             user_sex = 
-#             user_pa = 
-
-#         db.session.commit()
+#     if g.user:
+#         if request.method == 'POST':
+#             user = db.session.query(tb_user).filter_by(user_email=g.user.user_email).first()
+            
+#             db.session.commit()
+            
+#             return render_template("auth/mypage.html", login = True)
 #         return render_template("auth/mypage.html", login = True)
-#     return render_template('auth/more_info.html', )
+#     else:
+#         return render_template("error.html")
+
+    # # form = UserInfoForm()
+    # user_email = session.get('user')
+    # user_weight_edit = db.session.query(tb_user).filter_by(user_email=g.user.user_email).user_weight()
+    # user_height = db.session.query(tb_user).filter_by(user_email=g.user.user_email).user_height()
+    # user_birth = db.session.query(tb_user).filter_by(user_email=g.user.user_email).user_birth()
+    # user_cal = db.session.query(tb_user).filter_by(user_email=g.user.user_email).user_cal()
+    # user_goal = db.session.query(tb_user).filter_by(user_email=g.user.user_email).user_goal()
+    # user_sex = db.session.query(tb_user).filter_by(user_email=g.user.user_email).user_sex()
+    # user_pa = db.session.query(tb_user).filter_by(user_email=g.user.user_email).user_pa()
+
+    # db.session.commit()
+    # return render_template("auth/mypage.html", login = True)
 
 # @bp.route('/mypage/', methods=('GET', 'POST'))
 # def mypage():

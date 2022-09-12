@@ -12,3 +12,8 @@ def main():
    else:
       return render_template("main.html", login = False)
 
+@bp.route("/aboutus")
+def aboutus():
+   
+   return render_template("aboutus.html")
+
