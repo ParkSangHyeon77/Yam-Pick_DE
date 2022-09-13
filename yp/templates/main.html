@@ -46,8 +46,8 @@
         
         {% if login ==True %}
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="/" style="text-align: center;">
-            <img src="/static/img/Yam-Pick_logo.jpg" alt="" width="50" height="50">
+          <li><a href="/" style="text-align: center;margin: 10px 0px;">
+            <img src="/static/img/Yam-Pick_logo_main.jpg" alt="" width="50" height="50" >
           </a></li>
           <li><a href="/" class="nav-link px-2 text-secondary" style="font-size: 1.3em; text-align: center;">Yam-Pick</a></li>
           <li><a href="/upload" class="nav-link px-2 text-white" style="margin:5px 0px;">업로드</a></li>
@@ -67,8 +67,8 @@
         </div>
         {% else %}
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="/" style="text-align: center;">
-            <img src="/static/img/Yam-Pick_logo.jpg" alt="" width="50" height="50">
+          <li><a href="/" style="text-align: center; margin-right: 10px;">
+            <img src="/static/img/Yam-Pick_logo_main.jpg" alt="" width="50" height="50">
           </a></li>
           <li><a href="/" class="nav-link px-2 text-secondary" style="font-size: 1.3em; text-align: center;">Yam-Pick</a></li>
           <li><a href="/aboutus" class="nav-link px-2 text-white" style="margin:5px 0px;">만든이들</a></li>
@@ -105,14 +105,9 @@
             <a href ="/upload">
               <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">업로드</button>
             </a>
-            <!-- <a href="/data">
-            <button type="button" class="btn btn-outline-secondary btn-lg px-4">더 알아보기</button>
-            </a> -->
             
             {% else %}
-            <!-- <a href="/auth/login">
-            <button type="button" class="btn btn-outline-secondary btn-lg px-4">더 알아보기</button>
-            </a> -->
+            
             {% endif %}
           </div>
         </div>
